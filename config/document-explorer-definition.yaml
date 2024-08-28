@@ -31,7 +31,7 @@
 - sections:
   - title: 1-INTRODUCTION
     sections:
-    - title INTRODUCTION-get-started
+    - title get-started
       link: docs/1-INTRODUCTION/get-started.md
     - title your-feedback-matters
       link: docs/1-INTRODUCTION/home/your-feedback-matters.md
@@ -83,8 +83,6 @@
       link: docs/1-INTRODUCTION/get-started/select-an-integration.md
     - title ds-4610-on-clover-device-integration
       link: docs/1-INTRODUCTION/get-started/ds-4610-on-clover-device-integration.md
-    - title post-app-launch-checklist
-      link: docs/1-INTRODUCTION/get-started/post-app-launch-checklist.md
     - title create-an-api-token
       link: docs/1-INTRODUCTION/get-started/create-an-api-token.md
     - title ds-4610-payment-integration
