@@ -95,7 +95,7 @@
       link: docs/1-INTRODUCTION/meet-our-merchants/merchant-needs.md
 - sections:
   - title: API-Ref-2-Ecommerce APIs
-  sections:
+    sections:
     - title: revoke-a-payment-source
       link: docs/API-Ref-2-Ecommerce APIs/customers/revoke-a-payment-source.md
     - title: updatecustomer
@@ -196,7 +196,7 @@
       link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/gift-card-cashout.md
 - sections:
   - title: 4-ECOMMERCE PLUGINS -US and Canada only
-  sections:
+    sections:
     - title: authorizing-and-verifying-orders
       link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/authorizing-and-verifying-orders.md
     - title: setting-up-an-api-token
@@ -269,7 +269,7 @@
       link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/clover-payments-plugin-for-shopify-stores.md
 - sections:
   - title: API-Ref-1-CLOVER REST API
-  sections:
+    sections:
     - title: api-reference-overview-copy
       link: docs/API-Ref-1-CLOVER REST API/api-reference-overview-copy.md
     - title: api-reference-overview
