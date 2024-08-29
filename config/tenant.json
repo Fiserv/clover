@@ -13,7 +13,7 @@
       "versionType": "major",
       "releaseNotesPath": "docs/release-notes/2022/march.md",
       "apiSpecFileNames": [
-        "Ecommerce-service-API"
+        "Ecommerce-service-API_v0.0.1"
       ]
     }
   ],

@@ -31,8 +31,6 @@
 - sections:
   - title: 1-INTRODUCTION
     sections:
-    - title: get-started
-      link: docs/1-INTRODUCTION/get-started.md
     - title: your-feedback-matters
       link: docs/1-INTRODUCTION/home/your-feedback-matters.md
     - title: text-formatting-conventions
@@ -45,6 +43,8 @@
       link: docs/1-INTRODUCTION/home/developer-documentation.md
     - title: monetizing-your-apps
       link: docs/1-INTRODUCTION/monetizing-your-apps.md
+    - title: billing-information-approval
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval.md
     - title: submit-app-for-approval
       link: docs/1-INTRODUCTION/clover-app-approval-process/submit-app-for-approval.md
     - title: developer-account-approval
@@ -55,16 +55,26 @@
       link: docs/1-INTRODUCTION/clover-app-approval-process/transfer-developer-ownership.md
     - title: developer-accounts
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-accounts.md
+    - title: add-developer-bank-account-information
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval/add-developer-bank-account-information.md
+    - title: update-developer-bank-account-information
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval/update-developer-bank-account-information.md
     - title: working-with-test-merchants
       link: docs/1-INTRODUCTION/clover-app-approval-process/working-with-test-merchants.md
     - title: developer-account-roles
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-account-roles.md
+    - title: managing-developer-accounts
+      link: docs/1-INTRODUCTION/clover-app-approval-process/managing-developer-accounts.md
     - title: developer-app-approval-archive
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-app-approval-archive.md
+    - title: installing-your-app-to-your-test-merchant
+      link: docs/1-INTRODUCTION/clover-app-approval-process/installing-your-app-to-your-test-merchant.md
     - title: readme-limitations
       link: docs/1-INTRODUCTION/clover-environments/readme-limitations.md
     - title: meet-our-merchants
       link: docs/1-INTRODUCTION/meet-our-merchants.md
+    - title: get-started-with-sandbox-environment
+      link: docs/1-INTRODUCTION/get-started-with-sandbox-environment.md
     - title: home
       link: docs/1-INTRODUCTION/home.md
     - title: use-test-merchants-dashboard
