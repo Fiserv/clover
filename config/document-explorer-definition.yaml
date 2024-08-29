@@ -31,67 +31,67 @@
 - sections:
   - title: 1-INTRODUCTION
     sections:
-    - title get-started
+    - title: get-started
       link: docs/1-INTRODUCTION/get-started.md
-    - title your-feedback-matters
+    - title: your-feedback-matters
       link: docs/1-INTRODUCTION/home/your-feedback-matters.md
-    - title text-formatting-conventions
+    - title: text-formatting-conventions
       link: docs/1-INTRODUCTION/home/text-formatting-conventions.md
-    - title pci-security-guidance-for-app-developers
+    - title: pci-security-guidance-for-app-developers
       link: docs/1-INTRODUCTION/home/pci-security-guidance-for-app-developers.md
-    - title developer-technical-support
+    - title: developer-technical-support
       link: docs/1-INTRODUCTION/home/developer-technical-support.md
-    - title documentation
+    - title: documentation
       link: docs/1-INTRODUCTION/home/developer-documentation.md
-    - title monetizing-your-apps
+    - title: monetizing-your-apps
       link: docs/1-INTRODUCTION/monetizing-your-apps.md
-    - title submit-app-for-approval
+    - title: submit-app-for-approval
       link: docs/1-INTRODUCTION/clover-app-approval-process/submit-app-for-approval.md
-    - title developer-account-approval
+    - title: developer-account-approval
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-account-approval.md
-    - title set-up-two-factor-authentication-2fa
+    - title: set-up-two-factor-authentication-2fa
       link: docs/1-INTRODUCTION/clover-app-approval-process/set-up-two-factor-authentication-2fa.md
-    - title transfer-developer-ownership
+    - title: transfer-developer-ownership
       link: docs/1-INTRODUCTION/clover-app-approval-process/transfer-developer-ownership.md
-    - title developer-accounts
+    - title: developer-accounts
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-accounts.md
-    - title working-with-test-merchants
+    - title: working-with-test-merchants
       link: docs/1-INTRODUCTION/clover-app-approval-process/working-with-test-merchants.md
-    - title developer-account-roles
+    - title: developer-account-roles
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-account-roles.md
-    - title developer-app-approval-archive
+    - title: developer-app-approval-archive
       link: docs/1-INTRODUCTION/clover-app-approval-process/developer-app-approval-archive.md
-    - title readme-limitations
+    - title: readme-limitations
       link: docs/1-INTRODUCTION/clover-environments/readme-limitations.md
-    - title meet-our-merchants
+    - title: meet-our-merchants
       link: docs/1-INTRODUCTION/meet-our-merchants.md
-    - title home
+    - title: home
       link: docs/1-INTRODUCTION/home.md
-    - title use-test-merchants-dashboard
+    - title: use-test-merchants-dashboard
       link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/use-test-merchants-dashboard.md
-    - title create-a-sandbox-account
+    - title: create-a-sandbox-account
       link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/create-a-sandbox-account.md
-    - title generate-a-test-api-token
+    - title: generate-a-test-api-token
       link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/generate-a-test-api-token.md
-    - title clover-environments
+    - title: clover-environments
       link: docs/1-INTRODUCTION/clover-environments.md
-    - title get-started
+    - title: get-started
       link: docs/1-INTRODUCTION/get-started.md
-    - title clover-app-approval-process
+    - title: clover-app-approval-process
       link: docs/1-INTRODUCTION/clover-app-approval-process.md
-    - title select-an-integration
+    - title: select-an-integration
       link: docs/1-INTRODUCTION/get-started/select-an-integration.md
-    - title ds-4610-on-clover-device-integration
+    - title: ds-4610-on-clover-device-integration
       link: docs/1-INTRODUCTION/get-started/ds-4610-on-clover-device-integration.md
-    - title create-an-api-token
+    - title: create-an-api-token
       link: docs/1-INTRODUCTION/get-started/create-an-api-token.md
-    - title ds-4610-payment-integration
+    - title: ds-4610-payment-integration
       link: docs/1-INTRODUCTION/get-started/ds-4610-payment-integration.md
-    - title from-sandbox-to-app-launch-checklist
+    - title: from-sandbox-to-app-launch-checklist
       link: docs/1-INTRODUCTION/get-started/from-sandbox-to-app-launch-checklist.md
-    - title ds-4610-online-integration
+    - title: ds-4610-online-integration
       link: docs/1-INTRODUCTION/get-started/ds-4610-online-integration.md
-    - title merchant-needs
+    - title: merchant-needs
       link: docs/1-INTRODUCTION/meet-our-merchants/merchant-needs.md
 - sections:
   - title: API-Ref-2-Ecommerce APIs
