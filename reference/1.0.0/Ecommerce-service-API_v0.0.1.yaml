@@ -1,0 +1,1980 @@
+---
+components:
+  requestBodies:
+    CreateChargeRequest:
+      description: Describes a charge to be applied to the specified source.
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              amount:
+                type: integer
+                format: int64
+                minimum: 0
+                description: |-
+                  Charge amount in cents. If the charge request includes tax (`tax_rate_uuid` or `tax_amount`), this value must be the sum of any item prices and any tax or tip.
+                   For example, if the item cost = $10 and the tax is $1, the amount is 1100 cents ($11).
+                   Format: cents
+              currency:
+                type: string
+                description: |-
+                  Three-letter [ISO 4217 currency code](https://www.iso.org/iso-4217-currency-codes.html).
+                   **Note:** Merchants in Canada and United States (US) can now accept customer payments in currency other than the US Dollar (USD). See [Multi Currency Pricing](https://docs.clover.com/docs/create-a-charge#multi-currency-pricing-mcp).
+                   Format: Lower case
+                   Length: Max 3
+              capture:
+                type: boolean
+                description: |-
+                  Indicates whether to immediately capture the charge.
+                   Values:
+                    True - Default.
+                    False - Indicates the charge transaction type is AUTH (or PRE-AUTH), and the charge can be captured later using the [capture a charge](https://docs.clover.com/reference/capturecharge) endpoint.
+              partial_redemption:
+                type: boolean
+                description: |-
+                  Indicates whether the charge can be authorized for a lesser amount.
+                   Values:
+                    True
+                    False - Default
+              description:
+                type: string
+                maxLength: 255
+                description: Text describing the charge. This information is often
+                  displayed to users.
+              ecomind:
+                type: string
+                description: Indicates who entered the card data used for a charge
+                  - customer (ecom) or merchant (moto).
+                default: ecom
+                enum:
+                - ecom
+                - moto
+              external_reference_id:
+                type: string
+                description: |-
+                  Unique identifier (ID), such as an invoice or purchase order (PO) number, that is sent to the merchant's gateway and displayed in settlement records.
+                   Format: Supported for US—alphanumeric characters with in-between spaces.
+                   Length: Max 12, including spaces and alphanumeric characters.
+              external_customer_reference:
+                type: string
+                description: Customer reference number from merchant’s order management
+                  system.
+              receipt_email:
+                type: string
+                description: |-
+                  Email address to which the charge receipt is sent. Receipts are sent only after the charge is paid.
+                    **Note:** Receipts are not sent in the sandbox environment.
+              metadata:
+                properties:
+                  existingDebtIndicator:
+                    description: |-
+                      Indicates whether a US merchant with the gateway group Ids 40001 or 10001, and merchant category codes (MCC) 6012 or 6051 can process Visa&reg; consumer debit transactions that have an existing debt.
+                       Values:
+                       True - Merchant can process transactions that have an existing debt.
+                       False - Default; Transactions do not have an existing debt.
+                    type: boolean
+                    default: false
+                description: |-
+                  Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+                   Length: Maximum 500 characters.
+                type: object
+              soft_descriptor:
+                "$ref": "#/components/schemas/soft_descriptor"
+              source:
+                type: string
+                description: Payment source to charge, such as `token` or `alternate_tender`.
+              stored_credentials:
+                "$ref": "#/components/schemas/stored_credentials"
+              level2:
+                "$ref": "#/components/schemas/purchase_card_level2"
+              level3:
+                "$ref": "#/components/schemas/purchase_card_level3"
+              threeds:
+                "$ref": "#/components/schemas/threeds"
+              tax_rate_uuid:
+                type: string
+                minimum: 0
+                description: Tax rate universally unique identifiers (UUID). Use the
+                  [Get all tax rates](https://docs.clover.com/reference/taxrategettaxrates)
+                  endpoint to retrieve merchant tax UUID information. The tax is not
+                  automatically added to the total amount. Your app must ensure the
+                  Amount property is the total final amount to charge the customer.
+              tax_amount:
+                type: integer
+                format: int64
+                minimum: 0
+                description: Amount paid in taxes. This value is not automatically
+                  added to the total amount. Your app must ensure the Amount property
+                  is the total final amount to charge the customer.
+              tip_amount:
+                type: integer
+                format: int64
+                minimum: 0
+                description: Amount paid in tips. This value is automatically added
+                  to the total amount when the transaction is finalized.
+              tender:
+                "$ref": "#/components/schemas/tender"
+            required:
+            - amount
+            - currency
+            - source
+  schemas:
+    tender:
+      description: 'Custom tender to charge or pay for the order, for example: cash
+        or check.'
+      properties:
+        label_key:
+          enum:
+          - com.clover.tender.cash
+          - com.clover.tender.check
+          type: string
+          description: Cash and check system tenders.
+        label:
+          type: string
+          description: Name of the custom merchant tender.
+        id:
+          type: string
+          description: Universally unique identifier (UUID) of the custom merchant
+            tender.
+    installment_info:
+      description: Installment information for the transaction.
+      properties:
+        bill_pay_indicator:
+          enum:
+          - Recurring
+          - Installment
+          type: string
+          description: "Indicates whether the transaction is a recurring or installment
+            payment. \n Values:\n  Installment\n  Recurring - For Canadian merchants,
+            the value must be Recurring"
+        invoice_number:
+          type: string
+          description: |-
+            Invoice number of the installment or recurring transaction.
+             Length: Max 12 characters
+        description:
+          type: string
+          description: Description of the `installment_info` object.
+        total_count:
+          type: integer
+          description: |-
+            Total count of the transaction installments as per the cardholder agreement with the merchant.
+             All customer-initiated transactions require 3DS authentication. Additionally, `total_count` is required for the following cards and transactions:
+             **Discover&reg; cards**, including JCB&reg; (US domestic) and Diners&reg; used for merchant-initiated installments and recurring transactions. Default: Not defined
+             **India-issued Discover cards** used for merchant-initiated recurring transactions.
+             **India-issued Visa&reg; cards** used for recurring transactions. Values: 1 to 99; Default: 99
+        total_amount:
+          type: integer
+          description: |-
+            Total installment amount.
+             Max 500,000 USD
+        sequence_number:
+          type: integer
+          description: |-
+            Required for Discover card. Sequence of the transactions, displayed in ascending order, when multiple installment payments are submitted.
+             Length: 2
+        amount_type:
+          type: string
+          enum:
+          - Fixed
+          - Variable
+          description: "Transaction account type applicable to Discover (including
+            JCB and Diner) and Visa cards. \n All customer-initiated transactions
+            require 3DS authentication. Additionally, `amount_type` is required for
+            the following cards and transactions: \n **Discover cards**, including
+            JCB (US domestic) and Diners are used for merchant-initiated installments
+            and recurring transactions.\n **India-issued Discover cards** are used
+            for merchant-initiated recurring transactions.\n **India-issued Visa cards**
+            are used for recurring transactions.\n Default: Fixed"
+        interval:
+          type: string
+          enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+          - SEMI_MONTH
+          description: |-
+            Frequency of a recurring or installment or recurring payment.
+             This field is required for:
+             **Discover card** used for merchant-initiated installment or recurring transactions.
+             **India-issued Visa cards** used for recurring transactions.
+        interval_count:
+          type: integer
+          description: |-
+            Frequency counts of a installment or recurring payment.
+             This field is required for:
+             **Discover card** used for merchant-initiated installment or recurring transactions.
+             **India-issued Visa cards** used for recurring transactions.
+    threeds:
+      description: EMV® 3-D Secure (3DS) schema.
+      properties:
+        source:
+          type: string
+          description: 'Source of the 3-D Secure (3DS) authentication, for example:
+            `NON_CLOVER`.'
+          maxLength: 15
+        authentication_result:
+          "$ref": "#/components/schemas/threeds_authentication_result"
+      required:
+      - source
+      - authentication_result
+    threeds_authentication_result:
+      description: EMV® 3-D Secure (3DS) authentication result. 3-D Secure is a protocol
+        that provides an additional security layer for online credit and debit card-not-present
+        (CNP) transactions.
+      properties:
+        authentication_status:
+          enum:
+          - SUCCESS
+          - FAILED
+          - ATTEMPTED
+          - UNAVAILABLE
+          - REJECTEED
+          type: string
+          description: Indicates authentication status of 3-D Secure (3DS) transaction.
+        transaction_id:
+          type: string
+          description: 3-D Secure (3DS) transaction identifier.
+        cryptogram:
+          type: string
+          description: 3-D Secure (3DS) cryptogram. This is an authentication method
+            associated with cards stored as Android device tokens. Returned payment
+            data includes a (3DS) cryptogram generated on the device.
+        threeds_version:
+          type: string
+          description: |-
+            3-D Secure (3DS) authentication version.
+             **Note:** Clover supports 3-D Secure (3DS) version 2.0 only. Upgrade your version to 2.0, as 1.0 is no longer supported.
+    browser_info:
+      description: Browser Info required to pass to microservice
+      properties:
+        browser_accept_header:
+          type: string
+          description: Browser accept header
+        browser_ip:
+          type: string
+          description: browser ip
+        browser_javascript_enabled:
+          type: boolean
+          description: browser javascript enabled-> true/false
+        browser_java_enabled:
+          type: boolean
+          description: browser java enabled-> true/false
+        browser_language:
+          type: string
+          description: browser language
+        browser_screen_height:
+          type: string
+          description: browser screen height
+        browser_screen_width:
+          type: string
+          description: browser screen width
+        browser_tz:
+          type: string
+          description: browser tz
+        browser_user_agent:
+          type: string
+          description: browser user agent
+        browser_http_origin:
+          type: string
+          description: browser http origin
+    threeds_validation_result:
+      description: 3DSecure validation result.
+      properties:
+        validation_result:
+          enum:
+          - AUTHENTICATION_FAILED
+          - AUTHENTICATION_SUCCESSFUL
+          - ISSUER_DOES_NOT_PARTICIPATE
+          - ATTEMPTED_UNSUCCESSFULLY
+          - ATTEMPTED_SUCCESSFULLY
+          - NOT_POSSIBLE
+          type: string
+          description: Indicates validation result of 3DSecure transaction.
+        source:
+          type: string
+          description: 'Source of the 3DSecure transaction. Example: `CLOVER` or `NON_CLOVER`'
+    stored_credentials:
+      description: Stored credentials for a transaction. For subsequent payments with
+        a saved card, stored credentials are available only with multi-pay (mTokens)
+        tokens. See [Save a card for future transactions](https://docs.clover.com/docs/ecommerce-saving-card)
+        for more information.
+      properties:
+        sequence:
+          enum:
+          - FIRST
+          - SUBSEQUENT
+          type: string
+          description: |-
+            Indicates sequence of the transaction for the same payment card.
+             Values:
+             First
+             Subsequent
+        is_scheduled:
+          type: boolean
+          description: |-
+            Indicates whether the transaction is scheduled or part of an installment.
+             Values:
+              True - Transaction is scheduled.
+              False - Transaction is part of an installment. Installments are only available in the US.
+        initiator:
+          enum:
+          - MERCHANT
+          - CARDHOLDER
+          type: string
+          description: |-
+            Indicates with whose consent the transaction is initiated.
+              Values:
+              Cardholder
+              Merchant
+        installment_info:
+          "$ref": "#/components/schemas/installment_info"
+    soft_descriptor:
+      description: Soft descriptor information for a transaction. This information
+        displays on the customer's card statement in place of the merchant's business
+        information on record.
+      properties:
+        dba_name:
+          type: string
+          maxLength: 38
+          description: |-
+            Merchant doing business as (DBA) name, product, or service.
+             Length: Max 38 alphanumeric characters.
+        street:
+          type: string
+          description: Merchant's street address.
+        city:
+          type: string
+          description: Merchant's city.
+        region:
+          type: string
+          maxLength: 2
+          description: |-
+            Merchant's state.
+             Format: 2-character postal abbreviation (US only).
+        postal_code:
+          type: string
+          description: Merchant's postal code.
+        country_code:
+          type: string
+          minLength: 3
+          maxLength: 3
+          description: "Merchant's country code. \n Format: 3-digit; see the [Country
+            code reference](https://docs.clover.com/docs/country-code-reference)."
+        merchant_contact_info:
+          type: string
+          description: |-
+            Merchant's phone number or email address.
+             Format: Max 13 characters for Discover&reg; and Visa&reg; transactions.
+    purchase_card_level2:
+      description: Additional data for purchase card transactions (US only).
+      properties:
+        tax_amount:
+          type: integer
+          format: int64
+          description: Part of the transaction amount that indicates the sales tax.
+            A `pc_order_number` is required when including a `tax_amount`.
+        tax_indicator:
+          type: integer
+          description: |-
+            Taxable status of the transaction.
+             Values:
+             0 – No tax information provided.
+             1 – Tax amount is provided.
+             2 – Purchase item is tax exempt or non-taxable.
+          enum:
+          - 0
+          - 1
+          - 2
+        purchase_identifier:
+          type: string
+          description: Identifier, such as stock keeping unit (SKU), code or reference
+            number that the merchant or customer uses to identify the purchase.
+        pc_order_number:
+          type: string
+          description: Order number or customer reference number reported as part
+            of the purchase card data.
+        discount_amount:
+          type: integer
+          format: int64
+          description: |-
+            Discount amount for the transaction.
+             Format: Cents
+        freight_amount:
+          type: integer
+          format: int64
+          description: |-
+            Freight amount included for the transaction.
+             Format: Cents
+        duty_amount:
+          type: integer
+          format: int64
+          description: |-
+            Duty amount included for the transaction.
+             Format: Cents
+        destination_postal_code:
+          type: string
+          description: Postal or ZIP code of the delivery location.
+        ship_from_postal_code:
+          type: string
+          description: Postal or ZIP code of the shipping location.
+        destination_country_code:
+          type: integer
+          description: |-
+            Delivery location country code.
+             Format: 3-digit code; see the [Country code reference](https://docs.clover.com/docs/country-code-reference).
+        merchant_tax_id:
+          type: string
+          description: Only for Mastercard&reg;. Identifier (ID) for the tax the merchant
+            collects for the transaction.
+        product_description:
+          type: string
+          description: Description of the purchased item.
+    purchase_card_level3:
+      description: Additional data for purchase card level3 transactions (US only).
+        Supported for Mastercard&reg; and Visa&reg only. Purchase card level2 is mandatory
+        for level3 transactions.
+      properties:
+        service_code:
+          type: string
+          maxLength: 3
+          description: Required for all non-keyed transactions and swiped transactions.
+            Service code extracted from the track data.
+        magnetic_Stripe_Ind:
+          type: boolean
+          description: |-
+            Indicates whether magnetic stripe card was used.
+             Values:
+             True - magnetic stripe swiped transaction
+             False
+        level3_line_items:
+          description: List of level3 line items.
+          items:
+            "$ref": "#/components/schemas/level3_line_item"
+          type: array
+    level3_line_item:
+      description: Level3 line item details.
+      properties:
+        item_description:
+          type: string
+          maxLength: 35
+          description: |-
+            Required for reduced interchange and for Mastercard&reg;. ItemMerchandise description.
+             Format:
+              For Mastercard, level 3 must not be all 0s (zeros) or all high/low values.
+             For Visa, level 3 must not be all spaces or all 0s (zeros).
+             Length: Maximum 35 characters.
+        product_code:
+          type: string
+          maxLength: 12
+          description: |-
+            Required for Mastercard and Visa. Product or Universal Product Code (UPC).
+             Format: Must not be all spaces.
+        unit_cost:
+          type: integer
+          format: int64
+          maxLength: 13
+          description: |-
+            Unit cost of level3 line item.
+             Format: For Visa must not be all spaces or 0s (zeros).
+        quantity:
+          type: number
+          format: decimal
+          description: |-
+            Item quantity information; required for reduced interchange.
+             Format: Must not be all spaces or 0s (zeros); Last 4 digits are considered decimal places, example: 20.0000
+        discount_amount:
+          type: integer
+          format: int64
+          maxLength: 13
+          description: |-
+            Discount amount applied to the level3 line item.
+             Format: For Visa level2 must not be all 0s (zeros), if a discount exists.
+        unit_of_measure:
+          type: string
+          maxLength: 12
+          description: Unit of measurement codes used for international trade. Required
+            for reduced interchange for both Mastercard and Visa. See [Unit of Measurement
+            codes](https://docs.clover.com/docs/units-of-measurement-codes).
+        commodity_code:
+          type: string
+          maxLength: 12
+          description: Required for Visa. Indicates classification of purchased items.
+      required:
+      - item_description
+      - quantity
+      - unit_of_measure
+      - product_code
+      - unit_cost
+    customer_request:
+      properties:
+        email:
+          type: string
+          description: Customer email address.
+        firstName:
+          type: string
+          description: First (given) name of the customer.
+        lastName:
+          type: string
+          description: Last name (surname) of the customer.
+        name:
+          type: string
+          description: Full name of the customer.
+        source:
+          type: string
+          description: The tokenized card (cToken) which is saved as a card on file
+            for future transactions.
+        phone:
+          type: string
+          description: Phone number of the customer.
+        address:
+          anyOf:
+          - "$ref": "#/components/schemas/address"
+          description: customer address.
+          nullable: true
+    error:
+      description: Error response from the API.
+      properties:
+        error:
+          "$ref": "#/components/schemas/api_errors"
+      required:
+      - error
+      type: object
+    api_errors:
+      properties:
+        charge:
+          description: Displays for card-related errors. Unique identifier (Id) of
+            the failed charge.
+          maxLength: 5000
+          type: string
+        code:
+          description: Error code. Additional information about the error to help
+            users identify the issue.
+          maxLength: 5000
+          type: string
+        decline_code:
+          description: Displays when a card issuer declines the transaction. This
+            includes the reason for the decline, if specified by the card issuer.
+          maxLength: 5000
+          type: string
+        doc_url:
+          description: URL (link) for more information about the reported error code.
+          maxLength: 5000
+          type: string
+        message:
+          description: Detailed information about the error code. For card-related
+            errors, this can provide more information to users.
+          maxLength: 40000
+          type: string
+        param:
+          description: Displays card parameter errors. The error message can inform
+            users entering card information of a specific problem with their entry.
+          maxLength: 5000
+          type: string
+        type:
+          description: Returned error type.
+          enum:
+          - api_connection_error
+          - api_error
+          - authentication_error
+          - card_error
+          - idempotency_error
+          - invalid_request_error
+          - rate_limit_error
+          type: string
+      required:
+      - type
+      title: APIErrors
+      type: object
+      x-expandableFields:
+      - payment_intent
+      - payment_method
+      - source
+    charge:
+      properties:
+        amount:
+          description: Total charge amount in the smallest monetary unit of the merchant's
+            currency
+          type: integer
+          format: int64
+        tax_amount:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount paid in taxes
+        tip_amount:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount paid in tips
+        additional_charges:
+          "$ref": "#/components/schemas/additional_charges"
+        amount_refunded:
+          description: Amount refunded in cents. This value can be less than the amount
+            property on the charge if a partial refund is issued.
+          type: integer
+          format: int64
+        partial_auth:
+          description: Indicates if partial approval has occurred
+          type: boolean
+        billing_details:
+          "$ref": "#/components/schemas/billing_details"
+        captured:
+          description: For charges not captured when the charge was created, this
+            value will be `false` if the charge remains uncaptured or `true` if it
+            has been captured
+          type: boolean
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        customer:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          description: Unique ID of the customer associated with the charge
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - 
+        description:
+          description: Container for user-facing information about the object
+          maxLength: 40000
+          nullable: true
+          type: string
+        external_reference_id:
+          type: string
+          description: An ID, such as an invoice or PO number, that is passed to the
+            merchant's gateway and ultimately appears in settlement records. Format
+            supported for US, spaces in between are allowed and including spaces length
+            max to be 12 including alphanumeric characters
+        external_customer_reference:
+          type: string
+          description: Merchant's customer reference number (from merchant's order
+            management system)
+        auth_code:
+          description: If available, the authorization code - successful charge code
+          maxLength: 5000
+          nullable: true
+          type: string
+        ref_num:
+          description: "-> If available, the reference number returned from the payment
+            gateway if the transaction is successful"
+          maxLength: 5000
+          nullable: true
+          type: string
+        failure_code:
+          description: If available, the error code explaining the reason for the
+            charge failure
+          maxLength: 5000
+          nullable: true
+          type: string
+        failure_message:
+          description: If available, detailed information about the reason for the
+            charge failure
+          maxLength: 5000
+          nullable: true
+          type: string
+        warning_message:
+          description: If available, detailed warning information about the charge.
+            E.g., missing original transaction id for c-token. This does not cause
+            charge failure or decline
+          maxLength: 5000
+          nullable: true
+          type: string
+        id:
+          description: Unique ID
+          maxLength: 5000
+          type: string
+        livemode:
+          description: Set to `true` if the object is in production. `Set` to false
+            if the object is in sandbox.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+             Length: Maximum 500 characters
+          type: object
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - charge
+          type: string
+        order:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/order"
+          description: Unique ID of the order associated with the charge
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/order"
+        outcome:
+          description: Explanation of whether and why the payment was accepted
+          type: object
+          anyOf:
+          - maxLength: 5000
+          - "$ref": "#/components/schemas/charge_outcome"
+        paid:
+          description: Set to `true` if the charge is successful or authorized for
+            capture at a later point
+          type: boolean
+        payment_method:
+          description: Unique ID of the payment method used for the charge
+          maxLength: 5000
+          nullable: true
+          type: string
+        receipt_email:
+          description: Email address which receives the charge receipt
+          maxLength: 5000
+          nullable: true
+          type: string
+        receipt_number:
+          description: Transaction number that appears on the receipt emailed for
+            this charge. The attribute is set to `null` until a receipt is sent.
+          maxLength: 5000
+          nullable: true
+          type: string
+        receipt_url:
+          description: URL where the charge receipt can be accessed. The receipt displays
+            the latest state of the charge, including any refunds. If the charge is
+            for an invoice, the receipt is displayed as an invoice.
+          maxLength: 5000
+          type: string
+        refunded:
+          description: Set to `true` if the charge is fully refunded or `false` if
+            only partially refunded
+          type: boolean
+        refunds:
+          description: List of refunds applied to the charge
+          properties:
+            data:
+              items:
+                "$ref": "#/components/schemas/refund"
+              type: array
+            has_more:
+              description: Set to `true` if there is another page of list items after
+                the current page
+              type: boolean
+            object:
+              description: Object type. Objects with the same type have the same value.
+              enum:
+              - list
+              type: string
+            url:
+              description: URL of the list of refunds
+              maxLength: 5000
+              type: string
+          required:
+          - data
+          - has_more
+          - object
+          - url
+          title: RefundList
+          type: object
+          x-expandableFields:
+          - data
+        shipping:
+          anyOf:
+          - "$ref": "#/components/schemas/shipping"
+          description: Shipping information for the charge.
+          nullable: true
+        source:
+          "$ref": "#/components/schemas/source"
+        status:
+          description: Payment status.
+          enum:
+          - succeeded
+          - pending
+          - failed
+          maxLength: 5000
+          type: string
+        stored_credentials:
+          "$ref": "#/components/schemas/stored_credentials"
+        soft_descriptor:
+          "$ref": "#/components/schemas/soft_descriptor"
+        threeds:
+          "$ref": "#/components/schemas/threeds_validation_result"
+        gift_card:
+          "$ref": "#/components/schemas/ecomm_gift_card_response_extra"
+        amount_captured:
+          type: integer
+          format: int64
+          description: Total amount captured for pre-auth transactions.
+      required:
+      - amount
+      - amount_refunded
+      - billing_details
+      - captured
+      - created
+      - currency
+      - id
+      - livemode
+      - metadata
+      - object
+      - paid
+      - receipt_url
+      - refunded
+      - refunds
+      - status
+      title: Charge
+      type: object
+      x-expandableFields:
+      - billing_details
+      - customer
+      - dispute
+      - order
+      - outcome
+      - refunds
+      - shipping
+      - source
+      x-resourceId: charge
+    charge_outcome:
+      properties:
+        network_status:
+          description: The status of the transaction with respect to the card network
+            associated with the card.
+          type: string
+          enum:
+          - approved_by_network
+          - declined_by_network
+          - not_sent_to_network
+          - reversed_after_approval
+        reason:
+          description: A more detailed explanation of the outcome
+          type: string
+          nullable: true
+        rule:
+          description: Unique ID of the matching rule used to evaluate the payment
+          type: string
+        seller_message:
+          description: A detailed description of the outcome type and reason (intended
+            for the merchant, not the customer).
+          type: string
+        type:
+          description: Basic explanation of the charge's outcome.
+          type: string
+          enum:
+          - authorized
+          - blocked
+          - invalid
+          - issuer_declined
+          - manual_review
+      title: ChargeOutcome
+      type: object
+    order:
+      properties:
+        amount:
+          description: Total order amount in the smallest monetary unit of the merchant's
+            currency
+          type: integer
+          format: int64
+        amount_paid:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount currently paid toward the order total
+        amount_due:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount still due toward the order total
+        tax_amount:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Total tax amount for the order
+        tax_amount_paid:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount currently paid toward the tax total
+        tip_amount:
+          type: integer
+          format: int64
+          minimum: 0
+          description: Amount paid in tips
+        partial_auth:
+          description: Indicates if partial approval has occurred
+          type: boolean
+        additional_charges:
+          "$ref": "#/components/schemas/additional_charges"
+        threeds:
+          "$ref": "#/components/schemas/threeds_validation_result"
+        gift_card:
+          "$ref": "#/components/schemas/ecomm_gift_card_response_extra"
+        amount_returned:
+          nullable: true
+          type: integer
+          format: int64
+        charge:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/charge"
+          description: UUID of the order's payment. The payment UUID is available
+            if the order status is `paid`, `fulfilled`, or `refunded`.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/charge"
+        auth_code:
+          description: If available, the authorization code - successful charge code
+            when order is paid
+          maxLength: 5000
+          nullable: true
+          type: string
+        ref_num:
+          description: "-> If available, the reference number returned from the payment
+            gateway if the transaction is successful"
+          maxLength: 5000
+          nullable: true
+          type: string
+        warning_message:
+          description: If available, detailed warning information about the order
+            or associated charge (for example, missing original transaction id for
+            c-token)
+          maxLength: 5000
+          nullable: true
+          type: string
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        customer:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          description: The customer placing the order
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - 
+        email:
+          description: Email address of the customer placing the order
+          maxLength: 5000
+          nullable: true
+          type: string
+        external_reference_id:
+          type: string
+          description: An ID, such as an invoice or PO number, that is passed to the
+            merchant's gateway and ultimately appears in settlement records. Format
+            supported for US, spaces in between are allowed and including spaces length
+            max to be 12 including alphanumeric characters
+        external_customer_reference:
+          type: string
+          description: Merchant's customer reference number (from merchant's order
+            management system)
+        id:
+          description: Unique ID
+          maxLength: 5000
+          type: string
+        items:
+          description: List of items in the order. An order can have 25 items.
+          items:
+            "$ref": "#/components/schemas/order_item"
+          type: array
+        past_charges:
+          description: List of past charges on the order
+          items:
+            "$ref": "#/components/schemas/charge"
+          type: array
+        livemode:
+          description: Set to `true` if the object is in production. Set to `false`
+            if the object is in sandbox.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+             Length: Maximum 500 characters
+          type: object
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - order
+          type: string
+        returns:
+          nullable: true
+          properties:
+            data:
+              items:
+                "$ref": "#/components/schemas/order_return"
+              type: array
+            has_more:
+              description: Set to `true` if there is another page of list items after
+                the current page
+              type: boolean
+            object:
+              description: Object type set to list. Objects with the same type have
+                the same value.
+              enum:
+              - list
+              type: string
+            url:
+              description: URL of the list
+              maxLength: 5000
+              type: string
+          required:
+          - data
+          - has_more
+          - object
+          - url
+          title: OrderReturnList
+          type: object
+          x-expandableFields:
+          - data
+        selected_shipping_method:
+          description: Selected shipping method of the order. If present, the value
+            is set from the `shipping_methods` list. For multiple shipping methods,
+            the first method is automatically selected.
+          maxLength: 5000
+          nullable: true
+          type: string
+        shipping:
+          anyOf:
+          - "$ref": "#/components/schemas/shipping"
+          description: Shipping address of the order
+          nullable: true
+        shipping_methods:
+          description: List of supported shipping methods for the order. The shipping
+            method can be set when paying for the order and updated as needed before
+            the order ships.
+          items:
+            "$ref": "#/components/schemas/shipping_method"
+          nullable: true
+          type: array
+        source:
+          "$ref": "#/components/schemas/source"
+        status:
+          description: Current order status
+          enum:
+          - created
+          - paid
+          - canceled
+          - fulfilled
+          - returned
+          maxLength: 5000
+          type: string
+        status_transitions:
+          anyOf:
+          - "$ref": "#/components/schemas/status_transitions"
+          description: Timestamps (in milliseconds) for all order status updates
+          nullable: true
+      required:
+      - amount
+      - created
+      - currency
+      - id
+      - items
+      - livemode
+      - metadata
+      - object
+      - status
+      title: Order
+      type: object
+      x-expandableFields:
+      - charge
+      - customer
+      - items
+      - returns
+      - shipping
+      - shipping_methods
+      - status_transitions
+      x-resourceId: order
+    order_item:
+      properties:
+        amount:
+          description: Total amount for the items in the smallest monetary unit of
+            the merchant's currency
+          type: integer
+          format: int64
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        description:
+          description: User-facing description of the item (for example, `water bottle`
+            or `candy`). This can also describe non-SKU items such as taxes or shipping
+            methods.
+          maxLength: 5000
+          type: string
+        inventory_id:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/sku"
+          description: UUID of the associated object for the line item. The value
+            is expandable if it is not null.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/sku"
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - order_item
+          type: string
+        parent:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/sku"
+          deprecated: true
+          description: DEPRECATED. UUID of the associated object for the line item.
+            The value is expandable if it is not null.
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/sku"
+        quantity:
+          description: If the `type` is `sku`, the number of instances of `parent`
+            for the line item
+          nullable: true
+          type: integer
+          format: int64
+        tax_rates:
+          type: array
+          items:
+            oneOf:
+            - "$ref": "#/components/schemas/tax_rates_rate"
+            - "$ref": "#/components/schemas/tax_rates_amount"
+            - "$ref": "#/components/schemas/tax_rates_uuid"
+        type:
+          description: Line item type
+          enum:
+          - sku
+          - shipping
+          maxLength: 5000
+          type: string
+      required:
+      - amount
+      - currency
+      - description
+      - object
+      - type
+      title: OrderItem
+      type: object
+      x-expandableFields:
+      - parent
+    sku:
+      properties:
+        active:
+          description: Set to `true` if the item can be purchased
+          type: boolean
+        attributes:
+          additionalProperties:
+            maxLength: 5000
+            type: string
+          description: 'Set of product key-value pairs associated with and describing
+            the item. This can be used for storing additional information about the
+            item in a structured format. For example, for product attributes such
+            as color and style, a SKU can have the following pairs: `{"color": "fuschia",
+            "style": "bootcut"}`.'
+          type: object
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        id:
+          description: Unique object ID
+          maxLength: 5000
+          type: string
+        image:
+          description: URL of an image for the SKU
+          type: string
+          maxLength: 2048
+          nullable: true
+        livemode:
+          description: Set to `true` if the object is in production. Set to `false`
+            if the object is in sandbox.
+          type: boolean
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+             Length: Maximum 500 characters
+          type: object
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - sku
+          type: string
+        updated:
+          format: int64
+          type: integer
+      required:
+      - active
+      - attributes
+      - created
+      - currency
+      - id
+      - livemode
+      - metadata
+      - object
+      - price
+      - product
+      - updated
+      title: SKU
+      type: object
+      x-resourceId: sku
+    order_return:
+      properties:
+        amount:
+          description: Total amount for the return in the smallest monetary unit of
+            the merchant's currency
+          type: integer
+          format: int64
+        additional_charges:
+          "$ref": "#/components/schemas/additional_charges"
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        id:
+          description: Unique object ID
+          maxLength: 5000
+          type: string
+        items:
+          description: The item or items being returned
+          items:
+            "$ref": "#/components/schemas/order_item"
+          type: array
+        livemode:
+          description: Set to `true` if the object is in production. Set to `false`
+            if the object is in sandbox.
+          type: boolean
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - order_return
+          type: string
+        order:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/order"
+          description: UUID of the order that includes the returned items
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/order"
+        refund:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/refund"
+          description: UUID of the refund issued for the returned items
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/refund"
+      required:
+      - amount
+      - created
+      - currency
+      - id
+      - items
+      - livemode
+      - object
+      title: OrderReturn
+      type: object
+      x-expandableFields:
+      - items
+      - order
+      - refund
+      x-resourceId: order_return
+    refund:
+      properties:
+        amount:
+          description: Total amount of the refund in the smallest monetary unit of
+            the merchant's currency
+          type: integer
+          format: int64
+        additional_charges:
+          "$ref": "#/components/schemas/additional_charges"
+        charge:
+          anyOf:
+          - maxLength: 5000
+            type: string
+          - "$ref": "#/components/schemas/charge"
+          description: UUID of the charge that was refunded
+          nullable: true
+          x-expansionResources:
+            oneOf:
+            - "$ref": "#/components/schemas/charge"
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        description:
+          description: "(Only for non-card refunds) Container for user-facing information
+            about the object"
+          maxLength: 5000
+          type: string
+        external_reference_id:
+          type: string
+          description: An ID, such as an invoice or PO number, that is passed to the
+            merchant's gateway and ultimately appears in settlement records. Format
+            supported for US, spaces in between are allowed and including spaces length
+            max to be 12 including alphanumeric characters
+        failure_reason:
+          description: Explanation of why the refund cannot be performed
+          enum:
+          - lost_or_stolen_card
+          - expired_or_canceled_card
+          - unknown
+          maxLength: 5000
+          type: string
+        id:
+          description: Unique object ID
+          maxLength: 5000
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+             Length: Maximum 500 characters
+          type: object
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - refund
+          type: string
+        reason:
+          description: Reason for the refund
+          enum:
+          - duplicate
+          - fraudulent
+          - requested_by_customer
+          maxLength: 5000
+          nullable: true
+          type: string
+        receipt_number:
+          description: Transaction number that appears on the receipt emailed for
+            this charge
+          maxLength: 5000
+          nullable: true
+          type: string
+        status:
+          description: Refund status (for credit card refunds, `succeeded` or `failed`;
+            for other refund types, `pending`, `succeeded`, `failed`, or `canceled`)
+          enum:
+          - succeeded (card or non-card)
+          - failed (card or non-card)
+          - pending (non-card only)
+          - canceled (non-card only)
+          maxLength: 5000
+          nullable: true
+          type: string
+      required:
+      - amount
+      - created
+      - currency
+      - id
+      - metadata
+      - object
+      title: Refund
+      type: object
+      x-expandableFields:
+      - charge
+      x-resourceId: refund
+    shipping:
+      properties:
+        address:
+          "$ref": "#/components/schemas/address"
+        carrier:
+          description: 'Delivery service to ship the physical product. Example: DHL,
+            Fedex, US Postal Service (USPS), and so on.'
+          maxLength: 5000
+          nullable: true
+          type: string
+        name:
+          description: Recipient name for the shipped product.
+          maxLength: 5000
+          nullable: true
+          type: string
+        phone:
+          description: Phone number, including extension, of the recipient.
+          maxLength: 5000
+          nullable: true
+          type: string
+        tracking_number:
+          description: Shipment number provided by the carrier. Use a comma-separated
+            list for multiple tracking numbers.
+          maxLength: 5000
+          nullable: true
+          type: string
+      required:
+      - address
+      title: Shipping
+      type: object
+      x-expandableFields:
+      - address
+    shipping_method:
+      properties:
+        amount:
+          description: Total amount in the smallest monetary unit of the merchant's
+            currency
+          type: integer
+          format: int64
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        description:
+          description: Container for user-facing information about the object
+          maxLength: 5000
+          type: string
+        id:
+          description: Unique object ID
+          maxLength: 5000
+          type: string
+      required:
+      - amount
+      - currency
+      - description
+      - id
+      title: ShippingMethod
+      type: object
+      x-expandableFields:
+      - delivery_estimate
+    address:
+      properties:
+        city:
+          description: City of the customer's address. Can include district, suburb,
+            town, or village.
+          maxLength: 5000
+          nullable: true
+          type: string
+        country:
+          description: |-
+            Country code.
+             Format: 2 characters
+          maxLength: 5000
+          nullable: true
+          type: string
+        line1:
+          description: First line of the customer's address. Can include the street
+            address, PO box, or company name.
+          maxLength: 5000
+          nullable: true
+          type: string
+        line2:
+          description: Second line of the customer's address. Can include the apartment,
+            suite, unit, or building number.
+          maxLength: 5000
+          nullable: true
+          type: string
+        postal_code:
+          description: Postal or ZIP code of the customer's address.
+          maxLength: 5000
+          nullable: true
+          type: string
+        state:
+          description: State of the customer's address. Can include county, province,
+            or region.
+          maxLength: 5000
+          nullable: true
+          type: string
+      title: Address
+      type: object
+      x-expandableFields: []
+    billing_details:
+      properties:
+        address:
+          anyOf:
+          - "$ref": "#/components/schemas/address"
+          description: Billing address
+          nullable: true
+        email:
+          description: Email address
+          maxLength: 5000
+          nullable: true
+          type: string
+        name:
+          description: Full name
+          maxLength: 5000
+          nullable: true
+          type: string
+        phone:
+          description: Billing phone number (including extension)
+          maxLength: 5000
+          nullable: true
+          type: string
+      title: billing_details
+      type: object
+      x-expandableFields:
+      - address
+    customer:
+      properties:
+        created:
+          description: Creation time of the object (Unix timestamp in milliseconds)
+          format: int64
+          type: integer
+        currency:
+          description: Three-letter ISO 4217 currency code (in lowercase)
+          type: string
+        default_source:
+          description: UUID of the customer's default payment `source`
+          nullable: true
+          type: string
+        delinquent:
+          description: For an invoice charged automatically, `delinquent` is `true`
+            if the invoice's charge fails. For an invoice that is sent to the customer,
+            `delinquent` is `true` if the invoice is not paid by its due date.
+          nullable: true
+          type: boolean
+        description:
+          description: Container for user-facing information about the object
+          maxLength: 5000
+          nullable: true
+          type: string
+        email:
+          description: Customer email address
+          maxLength: 5000
+          nullable: true
+          type: string
+        id:
+          description: Unique ID
+          maxLength: 5000
+          type: string
+        metadata:
+          additionalProperties:
+            maxLength: 500
+            type: string
+          description: |-
+            Set of key-value pairs that you can attach to the object. This parameter is useful for storing additional information about the object in a structured format.
+             Length: Maximum 500 characters
+          type: object
+        object:
+          description: Object type. Objects with the same type have the same value.
+          enum:
+          - customer
+          type: string
+        shipping:
+          anyOf:
+          - "$ref": "#/components/schemas/shipping"
+          description: Customer mailing and shipping address. This information appears
+            on invoices emailed to the customer.
+          nullable: true
+        sources:
+          description: Customer's payment `source`s if available
+          properties:
+            data:
+              description: List of customer payment `source`s
+              items:
+                maxLength: 5000
+                type: string
+              type: array
+            has_more:
+              description: Set to `true` if there is another page of list items after
+                the current page
+              type: boolean
+            object:
+              description: Object type, set to list. Objects with the same type have
+                the same value.
+              enum:
+              - list
+              type: string
+            url:
+              description: URL of the list of sources
+              maxLength: 5000
+              type: string
+          required:
+          - data
+          - has_more
+          - object
+          - url
+          title: ApmsSourcesSourceList
+          type: object
+          x-expandableFields:
+          - data
+      required:
+      - created
+      - id
+      - livemode
+      - object
+      - sources
+      title: Customer
+      type: object
+      x-expandableFields:
+      - default_source
+      - discount
+      - invoice_settings
+      - shipping
+      - sources
+      - subscriptions
+      x-resourceId: customer
+    status_transitions:
+      properties:
+        canceled:
+          format: int64
+          nullable: true
+          type: integer
+        fulfilled:
+          format: int64
+          nullable: true
+          type: integer
+        paid:
+          format: int64
+          nullable: true
+          type: integer
+        returned:
+          format: int64
+          nullable: true
+          type: integer
+      title: StatusTransitions
+      type: object
+      x-expandableFields: []
+    tax_rates_rate:
+      title: Tax as percentage
+      description: Tax rate object defining an item-level tax as a percentage (%).
+      properties:
+        name:
+          type: string
+          maxLength: 5000
+          description: Label for the tax rate.
+        rate:
+          type: integer
+          description: Item-specific tax where a 10% rate is defined as `1000000`.
+      type: object
+    tax_rates_amount:
+      title: Tax as amount
+      description: Tax rate object defining a flat item-level tax amount.
+      properties:
+        name:
+          type: string
+          maxLength: 5000
+          description: Label for the tax rate.
+        tax_amount:
+          type: integer
+          description: |-
+            Merchant-defined flat tax amount in cents.
+             Format: Cents.
+      type: object
+    tax_rates_uuid:
+      title: Tax as UUID
+      description: Tax rate object defining an item-level tax with a unique identifier
+        (ID).
+      properties:
+        name:
+          type: string
+          maxLength: 5000
+          description: Label for the item-level tax UUID.
+        tax_rate_uuid:
+          type: string
+          description: Item-level tax UUID.
+      type: object
+    source:
+      title: Payment source (card)
+      description: The payment source charged. This can be a token or an alternate
+        tender.
+      nullable: true
+      type: object
+      properties:
+        id:
+          type: string
+          maxLength: 5000
+          description: Unique identifier (Clover token).
+        object:
+          type: string
+          maxLength: 5000
+          description: Type of source (for example, a card or bank account).
+        address_city:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: City segment of the provided billing address.
+        address_country:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: Country segment of the provided billing address.
+        address_line1:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: First line of the provided billing address. This includes the
+            building number and street name.
+        address_line1_check:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: If an `address_line1` was provided, the result of the verification
+            check (one of `pass`, `failed`, `unavailable`, or `unchecked`).
+          enum:
+          - pass
+          - failed
+          - unavailable
+          - unchecked
+        address_line2:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: Second line of the provided billing address (the room, suite,
+            or apartment number)
+        address_state:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: State or province segment of the provided billing address
+        address_zip:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: Zip or postal code segment of the provided billing address
+        address_zip_check:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: If an `address_zip` was provided, the result of the verification
+            check (one of `pass`, `failed`, `unavailable`, or `unchecked`)
+          enum:
+          - pass
+          - failed
+          - unavailable
+          - unchecked
+        brand:
+          type: string
+          maxLength: 5000
+          nullable: true
+          description: Brand of card presented by the customer
+        country:
+          type: string
+          maxLength: 5000
+          nullable: true
+          description: Two-letter ISO code for the country where the card was issued
+        cvc_check:
+          type: string
+          nullable: true
+          maxLength: 5000
+          description: If a card security code was provided, the result of the verification
+            check (one of `pass`, `failed`, `unavailable`, or `unchecked`)
+          enum:
+          - pass
+          - failed
+          - unavailable
+          - unchecked
+        exp_month:
+          type: string
+          maxLength: 5000
+          description: Two-digit number representing the card's expiration month
+        exp_year:
+          type: string
+          maxLength: 5000
+          description: Four-digit number representing the card's expiration year
+        fingerprint:
+          type: string
+          maxLength: 5000
+          description: Unique identifier for this source
+        first6:
+          type: string
+          maxLength: 5000
+          description: First six digits of the card PAN
+        funding:
+          type: string
+          maxLength: 5000
+          description: Type of card funding (one of `credit`, `debit`, `prepaid`,
+            or `unknown`)
+        last4:
+          type: string
+          maxLength: 5000
+          description: Last four digits of the card PAN
+        name:
+          type: string
+          maxLength: 5000
+          description: Cardholder name
+    range_query_specs:
+      description: "Displays results based on an open- or closed-ended date and time
+        range. Each filter part requires the parameter name, such as `created or status_transitions`,
+        a comparison operator (`gt`, `gte`, `lt`, or `lte`), and a `date-time` or
+        `Unix timestamp` (in milliseconds).\n The query string uses one of the following
+        formats:\n `{parameterName}.{comparisonOperator}=yyyy-MM-dd HH:mm:ss`\n or
+        \n `{parameterName}.{comparisonOperator}={timestamp}`\n For example, to filter
+        the results for objects created after January 12, 2021 but before January
+        15 at 3 PM, add the following to the request: `created.gt=2021-01-12` & `created.lte=2021-01-15
+        15:00:00`."
+      anyOf:
+      - properties:
+          gt:
+            type: string
+            format: date-time
+            description: Displays results when the created field is greater than the
+              current value.
+          gte:
+            type: string
+            format: date-time
+            description: Displays results when the created field is greater than or
+              equal to the current value.
+          lt:
+            type: string
+            format: date-time
+            description: Displays results when the created field is less than the
+              current value.
+          lte:
+            type: string
+            format: date-time
+            description: Displays results when the created field is less than or equal
+              to the current value.
+    additional_charges:
+      description: Data about any surcharge or other fee applied to a transaction
+      type: object
+      properties:
+        amount:
+          description: The number of cents charged
+          type: integer
+        id:
+          description: A unique idendifier of the surcharge
+          type: string
+          minimum: 13
+          maximum: 13
+        rate:
+          description: The percentage of the total assessed as a surcharge or other
+            fee. This value is set when a merchant is boarded to Clover Percentages
+            are defined to four decimal places. For example, the value of a 3.5% surcharge
+            is `35000` (3.5*10000).
+          type: integer
+        type:
+          description: A descriptor of the additional charge collected with the payment
+          type: string
+          enum:
+          - CREDIT_SURCHARGE
+    ecomm_gift_card_response_extra:
+      description: gift card meta data.
+      type: object
+      properties:
+        previous_balance:
+          description: Indicates the previous balance before the transaction was initiated.
+          type: integer
+        new_balance:
+          description: Indicates the updated balance after the transaction is completed.
+          type: integer
+        lock_amount:
+          description: Indicates the value on the card that was locked due to a balance
+            lock transaction.
+          type: integer
+        expiration_date:
+          description: Indicates the account expiration date.
+          type: string
+        lock_id:
+          description: Unique lock number identifier for each balance lock record.
+            The `lock_id` helps capture the authorized amount and is applicable for
+            pre-auth and capture flow.
+          type: integer
+        number:
+          description: Embossed card number on the gift card or the ift card number.
+            Only applicable for virtual gift card activation.
+          type: string
+        security_card_value:
+          description: Gift card security code. Only applicable for virtual gift card
+            activation.
+          type: string
+    ecomm_gift_card_response:
+      description: Gift card data.
+      type: object
+      properties:
+        status:
+          description: Indicates the transaction response.
+          type: string
+        gift_card:
+          description: Additional information on the gift card transaction response.
+          "$ref": "#/components/schemas/ecomm_gift_card_response_extra"
+  examples:
+    RefundExample:
+      description: Refund example
+      value:
+        id: re_1039VV2eZvKYlo2CadhQUrEZ,
+        object: refund,
+        amount: 100,
+        charge: ch_1036sv2eZvKYlo2CnBcJSUV8,
+        created: 1387481419000,
+        currency: usd,
+        reason: null,
+        receipt_number: null,
+        status: succeeded
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://sandbox.dev.clover.com/oauth/authorize
+          tokenUrl: https://sandbox.dev.clover.com/oauth/token
+          scopes: {}
+openapi: 3.0.0
+info:
+  title: Ecommerce Service API
+  description: REST API providing card-not-present transaction functions for Clover
+    merchants and developers
+  version: 1.0.0
+servers:
+- description: Sandbox API server
+  url: https://scl-sandbox.dev.clover.com
+security:
+- OAuth2: []
+paths:
+  "/v1/charges":
+    post:
+      tags:
+      - CHARGES
+      operationId: CreateCharge
+      x-child-product-name: Charges
+      x-proxy-name: Create Charge
+      summary: Create a charge
+      x-clover-handler: com.clover.scl.handlers.charges.CreateChargeHandler
+      x-clover-is-public: true
+      description: Charges a credit card or other payment source using data in the
+        `charge` object. See [Create a charge](https://docs.clover.com/docs/create-a-charge)
+        tutorial for more information.
+      parameters:
+      - description: |-
+          Client internet protocol (IP) address of the web browser from which the customer’s payment originates.
+           `Note:` Header x-forwarded-for is required for enhanced security and accuracy of Clover services. Requests that don’t include the header are not successful.
+        explode: false
+        in: header
+        name: x-forwarded-for
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        "$ref": "#/components/requestBodies/CreateChargeRequest"
+      responses:
+        '200':
+          description: Successful response. Charge created.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/charge"
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/error"

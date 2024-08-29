@@ -29,10 +29,696 @@
 ################################################################################
 
 - sections:
-  - title: Getting Started
-    link: docs/getting-started.md
-- sections:
-  - title: Release notes
+  - title: 1-INTRODUCTION
     sections:
-    - title: March 2022
-      link: docs/release-notes/2022/march.md
+    - title: your-feedback-matters
+      link: docs/1-INTRODUCTION/home/your-feedback-matters.md
+    - title: text-formatting-conventions
+      link: docs/1-INTRODUCTION/home/text-formatting-conventions.md
+    - title: pci-security-guidance-for-app-developers
+      link: docs/1-INTRODUCTION/home/pci-security-guidance-for-app-developers.md
+    - title: developer-technical-support
+      link: docs/1-INTRODUCTION/home/developer-technical-support.md
+    - title: documentation
+      link: docs/1-INTRODUCTION/home/developer-documentation.md
+    - title: monetizing-your-apps
+      link: docs/1-INTRODUCTION/monetizing-your-apps.md
+    - title: billing-information-approval
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval.md
+    - title: submit-app-for-approval
+      link: docs/1-INTRODUCTION/clover-app-approval-process/submit-app-for-approval.md
+    - title: developer-account-approval
+      link: docs/1-INTRODUCTION/clover-app-approval-process/developer-account-approval.md
+    - title: set-up-two-factor-authentication-2fa
+      link: docs/1-INTRODUCTION/clover-app-approval-process/set-up-two-factor-authentication-2fa.md
+    - title: transfer-developer-ownership
+      link: docs/1-INTRODUCTION/clover-app-approval-process/transfer-developer-ownership.md
+    - title: developer-accounts
+      link: docs/1-INTRODUCTION/clover-app-approval-process/developer-accounts.md
+    - title: add-developer-bank-account-information
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval/add-developer-bank-account-information.md
+    - title: update-developer-bank-account-information
+      link: docs/1-INTRODUCTION/clover-app-approval-process/billing-information-approval/update-developer-bank-account-information.md
+    - title: working-with-test-merchants
+      link: docs/1-INTRODUCTION/clover-app-approval-process/working-with-test-merchants.md
+    - title: developer-account-roles
+      link: docs/1-INTRODUCTION/clover-app-approval-process/developer-account-roles.md
+    - title: managing-developer-accounts
+      link: docs/1-INTRODUCTION/clover-app-approval-process/managing-developer-accounts.md
+    - title: developer-app-approval-archive
+      link: docs/1-INTRODUCTION/clover-app-approval-process/developer-app-approval-archive.md
+    - title: installing-your-app-to-your-test-merchant
+      link: docs/1-INTRODUCTION/clover-app-approval-process/installing-your-app-to-your-test-merchant.md
+    - title: readme-limitations
+      link: docs/1-INTRODUCTION/clover-environments/readme-limitations.md
+    - title: meet-our-merchants
+      link: docs/1-INTRODUCTION/meet-our-merchants.md
+    - title: get-started-with-sandbox-environment
+      link: docs/1-INTRODUCTION/get-started-with-sandbox-environment.md
+    - title: home
+      link: docs/1-INTRODUCTION/home.md
+    - title: use-test-merchants-dashboard
+      link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/use-test-merchants-dashboard.md
+    - title: create-a-sandbox-account
+      link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/create-a-sandbox-account.md
+    - title: generate-a-test-api-token
+      link: docs/1-INTRODUCTION/get-started-with-sandbox-environment/generate-a-test-api-token.md
+    - title: clover-environments
+      link: docs/1-INTRODUCTION/clover-environments.md
+    - title: get-started
+      link: docs/1-INTRODUCTION/get-started.md
+    - title: clover-app-approval-process
+      link: docs/1-INTRODUCTION/clover-app-approval-process.md
+    - title: select-an-integration
+      link: docs/1-INTRODUCTION/get-started/select-an-integration.md
+    - title: ds-4610-on-clover-device-integration
+      link: docs/1-INTRODUCTION/get-started/ds-4610-on-clover-device-integration.md
+    - title: create-an-api-token
+      link: docs/1-INTRODUCTION/get-started/create-an-api-token.md
+    - title: ds-4610-payment-integration
+      link: docs/1-INTRODUCTION/get-started/ds-4610-payment-integration.md
+    - title: from-sandbox-to-app-launch-checklist
+      link: docs/1-INTRODUCTION/get-started/from-sandbox-to-app-launch-checklist.md
+    - title: ds-4610-online-integration
+      link: docs/1-INTRODUCTION/get-started/ds-4610-online-integration.md
+    - title: merchant-needs
+      link: docs/1-INTRODUCTION/meet-our-merchants/merchant-needs.md
+- sections:
+  - title: API-Ref-2-Ecommerce APIs
+    sections:
+    - title: revoke-a-payment-source
+      link: docs/API-Ref-2-Ecommerce APIs/customers/revoke-a-payment-source.md
+    - title: updatecustomer
+      link: docs/API-Ref-2-Ecommerce APIs/customers/updatecustomer.md
+    - title: createcustomer
+      link: docs/API-Ref-2-Ecommerce APIs/customers/createcustomer.md
+    - title: subscriptions-1
+      link: docs/API-Ref-2-Ecommerce APIs/subscriptions-1.md
+    - title: captureorderpay
+      link: docs/API-Ref-2-Ecommerce APIs/ordercapture/captureorderpay.md
+    - title: ecommerce-api-overview
+      link: docs/API-Ref-2-Ecommerce APIs/ecommerce-api-overview.md
+    - title: getchargescharge
+      link: docs/API-Ref-2-Ecommerce APIs/charges/getchargescharge.md
+    - title: capturecharge
+      link: docs/API-Ref-2-Ecommerce APIs/charges/capturecharge.md
+    - title: getcharges
+      link: docs/API-Ref-2-Ecommerce APIs/charges/getcharges.md
+    - title: createcharge
+      link: docs/API-Ref-2-Ecommerce APIs/charges/createcharge.md
+    - title: customers
+      link: docs/API-Ref-2-Ecommerce APIs/customers.md
+    - title: ecommgiftcard
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard.md
+    - title: recurring-payments-apis
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis.md
+    - title: keys
+      link: docs/API-Ref-2-Ecommerce APIs/keys.md
+    - title: orders
+      link: docs/API-Ref-2-Ecommerce APIs/orders.md
+    - title: getapikey
+      link: docs/API-Ref-2-Ecommerce APIs/keys/getapikey.md
+    - title: ordercapture
+      link: docs/API-Ref-2-Ecommerce APIs/ordercapture.md
+    - title: getrefund
+      link: docs/API-Ref-2-Ecommerce APIs/refunds/getrefund.md
+    - title: createrefund
+      link: docs/API-Ref-2-Ecommerce APIs/refunds/createrefund.md
+    - title: listrefunds
+      link: docs/API-Ref-2-Ecommerce APIs/refunds/listrefunds.md
+    - title: charges
+      link: docs/API-Ref-2-Ecommerce APIs/charges.md
+    - title: postordersidpay
+      link: docs/API-Ref-2-Ecommerce APIs/orders/postordersidpay.md
+    - title: getorders
+      link: docs/API-Ref-2-Ecommerce APIs/orders/getorders.md
+    - title: getordersid
+      link: docs/API-Ref-2-Ecommerce APIs/orders/getordersid.md
+    - title: postorders
+      link: docs/API-Ref-2-Ecommerce APIs/orders/postorders.md
+    - title: postordersidreturns
+      link: docs/API-Ref-2-Ecommerce APIs/orders/postordersidreturns.md
+    - title: tokens
+      link: docs/API-Ref-2-Ecommerce APIs/tokens.md
+    - title: refunds
+      link: docs/API-Ref-2-Ecommerce APIs/refunds.md
+    - title: create-card-token
+      link: docs/API-Ref-2-Ecommerce APIs/tokens/create-card-token.md
+    - title: create-ach-token
+      link: docs/API-Ref-2-Ecommerce APIs/tokens/create-ach-token.md
+    - title: create-giftcard-token
+      link: docs/API-Ref-2-Ecommerce APIs/tokens/create-giftcard-token.md
+    - title: plans
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans.md
+    - title: editplan
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans/editplan.md
+    - title: get
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans/get.md
+    - title: getplans
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans/getplans.md
+    - title: create
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans/create.md
+    - title: deleteplan
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/plans/deleteplan.md
+    - title: getsubscriptionsbyplanid
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/getsubscriptionsbyplanid.md
+    - title: getallsubscriptions
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/getallsubscriptions.md
+    - title: getsubscription
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/getsubscription.md
+    - title: delete
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/delete.md
+    - title: update
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/update.md
+    - title: createsubscription
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions/createsubscription.md
+    - title: subscriptions
+      link: docs/API-Ref-2-Ecommerce APIs/recurring-payments-apis/subscriptions.md
+    - title: sclbalanceinquiry
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/sclbalanceinquiry.md
+    - title: gift-card-balance-inquiry
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/gift-card-balance-inquiry.md
+    - title: gift-card-activation
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/gift-card-activation.md
+    - title: gift-card-reload
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/gift-card-reload.md
+    - title: gift-card-cashout
+      link: docs/API-Ref-2-Ecommerce APIs/ecommgiftcard/gift-card-cashout.md
+- sections:
+  - title: 4-ECOMMERCE PLUGINS -US and Canada only
+    sections:
+    - title: authorizing-and-verifying-orders
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/authorizing-and-verifying-orders.md
+    - title: setting-up-an-api-token
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/setting-up-an-api-token.md
+    - title: voiding-an-authorized-order
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/voiding-an-authorized-order.md
+    - title: processing-an-authorization
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/processing-an-authorization.md
+    - title: processing-a-sales-transaction
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/processing-a-sales-transaction.md
+    - title: configuring-the-clover-payment-extension
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/configuring-the-clover-payment-extension.md
+    - title: viewing-surcharges
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/viewing-surcharges.md
+    - title: verifying-order-processing-and-transaction
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/verifying-order-processing-and-transaction.md
+    - title: locating-merchant-id-1
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/locating-merchant-id-1.md
+    - title: capturing-an-authorization
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/capturing-an-authorization.md
+    - title: appendix-1
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/appendix-1.md
+    - title: refunding-an-order
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/refunding-an-order.md
+    - title: customizing-iframe
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/customizing-iframe.md
+    - title: installing-upgrading-and-uninstalling-payment-extension
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/installing-upgrading-and-uninstalling-payment-extension.md
+    - title: multilingual-support-1
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce/multilingual-support-1.md
+    - title: locating-merchant-id
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/locating-merchant-id.md
+    - title: installing-magento
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/installing-magento.md
+    - title: configuration-1
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/configuration-1.md
+    - title: customizing-the-iframe
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/customizing-the-iframe.md
+    - title: order-status-verification
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/order-status-verification.md
+    - title: surcharge
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/surcharge.md
+    - title: void-order-request
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/void-order-request.md
+    - title: authorization-flow
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/authorization-flow.md
+    - title: multilingual-support
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/multilingual-support.md
+    - title: prerequisites
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/prerequisites.md
+    - title: configuration
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/configuration.md
+    - title: capturing-authorized-transactions-invoice-generation
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/capturing-authorized-transactions-invoice-generation.md
+    - title: appendix
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/appendix.md
+    - title: refunding-a-captured-order
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento/refunding-a-captured-order.md
+    - title: magento
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/magento.md
+    - title: clover-payments-plugin-shopify-webhooks
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/clover-payments-plugin-for-shopify-stores/clover-payments-plugin-shopify-webhooks.md
+    - title: integrate-clover-payments-with-shopify
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/clover-payments-plugin-for-shopify-stores/integrate-clover-payments-with-shopify.md
+    - title: clover-payment-plugins
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/clover-payment-plugins.md
+    - title: woocommerce
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/woocommerce.md
+    - title: clover-payments-plugin-for-shopify-stores
+      link: docs/4-ECOMMERCE PLUGINS -US and Canada only-/clover-payments-plugin-for-shopify-stores.md
+- sections:
+  - title: API-Ref-1-CLOVER REST API
+    sections:
+    - title: api-reference-overview-copy
+      link: docs/API-Ref-1-CLOVER REST API/api-reference-overview-copy.md
+    - title: api-reference-overview
+      link: docs/API-Ref-1-CLOVER REST API/api-reference-overview.md
+    - title: api-changelog
+      link: docs/API-Ref-1-CLOVER REST API/api-changelog.md
+- sections:
+  - title: Legacy Ecomm API md
+    sections:
+    - title: v1tokensctoken-2
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/v1tokensctoken-2.md
+    - title: tokens-2
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/tokens-2.md
+    - title: updatetoken-2
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/v1tokensctoken-2/updatetoken-2.md
+    - title: gettoken-2
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/v1tokensctoken-2/gettoken-2.md
+    - title: create-giftcard-token
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/tokens-2/create-giftcard-token.md
+    - title: createtokenoptionshandler-2
+      link: docs/Legacy Ecomm API md/Gift card Tokenization Service API/tokens-2/createtokenoptionshandler-2.md
+    - title: v1tokensctoken
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/v1tokensctoken.md
+    - title: updatetoken
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/v1tokensctoken/updatetoken.md
+    - title: gettoken
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/v1tokensctoken/gettoken.md
+    - title: tokens
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/tokens.md
+    - title: createtokenoptionshandler
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/tokens/createtokenoptionshandler.md
+    - title: create-card-token
+      link: docs/Legacy Ecomm API md/CARD Tokenization Service API/tokens/create-card-token.md
+    - title: tokens-1
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/tokens-1.md
+    - title: v1tokensctoken-1
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/v1tokensctoken-1.md
+    - title: createtokenoptionshandler-1
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/tokens-1/createtokenoptionshandler-1.md
+    - title: create-ach-token
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/tokens-1/create-ach-token.md
+    - title: gettoken-1
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/v1tokensctoken-1/gettoken-1.md
+    - title: updatetoken-1
+      link: docs/Legacy Ecomm API md/ACH Tokenization Service API/v1tokensctoken-1/updatetoken-1.md
+    - title: updatecustomer
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/customers/updatecustomer.md
+    - title: createcustomer
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/customers/createcustomer.md
+    - title: revokecard
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/customers/revokecard.md
+    - title: captureorderpay
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ordercapture/captureorderpay.md
+    - title: ecommerce-api-overview
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommerce-api-overview.md
+    - title: getchargescharge
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/charges/getchargescharge.md
+    - title: capturecharge
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/charges/capturecharge.md
+    - title: getcharges
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/charges/getcharges.md
+    - title: createcharge
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/charges/createcharge.md
+    - title: customers
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/customers.md
+    - title: ecommgiftcard
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard.md
+    - title: orders
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders.md
+    - title: ordercapture
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ordercapture.md
+    - title: getrefund
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/refunds/getrefund.md
+    - title: createrefund
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/refunds/createrefund.md
+    - title: listrefunds
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/refunds/listrefunds.md
+    - title: charges
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/charges.md
+    - title: postordersidpay
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders/postordersidpay.md
+    - title: getorders
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders/getorders.md
+    - title: getordersid
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders/getordersid.md
+    - title: postorders
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders/postorders.md
+    - title: postordersidreturns
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/orders/postordersidreturns.md
+    - title: refunds
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/refunds.md
+    - title: sclbalanceinquiry
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard/sclbalanceinquiry.md
+    - title: activation
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard/activation.md
+    - title: cashout
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard/cashout.md
+    - title: balanceinquiry
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard/balanceinquiry.md
+    - title: reload
+      link: docs/Legacy Ecomm API md/Ecommerce Service API/ecommgiftcard/reload.md
+    - title: createcharge-1
+      link: docs/Legacy Ecomm API md/TransArmor service API/charges-1/createcharge-1.md
+    - title: ta-token-pilot-transarmor-token-api-index
+      link: docs/Legacy Ecomm API md/TransArmor service API/ta-token-pilot-transarmor-token-api-index.md
+    - title: orders-2
+      link: docs/Legacy Ecomm API md/TransArmor service API/orders-2.md
+    - title: charges-1
+      link: docs/Legacy Ecomm API md/TransArmor service API/charges-1.md
+    - title: postordersidpay-1
+      link: docs/Legacy Ecomm API md/TransArmor service API/orders-2/postordersidpay-1.md
+    - title: plans
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans.md
+    - title: editplan
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans/editplan.md
+    - title: get
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans/get.md
+    - title: getplans
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans/getplans.md
+    - title: create
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans/create.md
+    - title: deleteplan
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/plans/deleteplan.md
+    - title: getsubscriptionsbyplanid
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/getsubscriptionsbyplanid.md
+    - title: getallsubscriptions
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/getallsubscriptions.md
+    - title: getsubscription
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/getsubscription.md
+    - title: delete
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/delete.md
+    - title: update
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/update.md
+    - title: createsubscription
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions/createsubscription.md
+    - title: subscriptions
+      link: docs/Legacy Ecomm API md/ECommerce - Recurring APIs/subscriptions.md
+    - title: keys
+      link: docs/Legacy Ecomm API md/ECOMMERCE - PAKMS Service API/keys.md
+    - title: getapikey
+      link: docs/Legacy Ecomm API md/ECOMMERCE - PAKMS Service API/keys/getapikey.md
+- sections:
+  - title: 2-BUILD WITH REST API
+    sections:
+    - title: managing-categories
+      link: docs/2-BUILD WITH REST API/working-with-inventory/managing-categories.md
+    - title: querying-inventory
+      link: docs/2-BUILD WITH REST API/working-with-inventory/querying-inventory.md
+    - title: managing-modifier-groups-modifiers
+      link: docs/2-BUILD WITH REST API/working-with-inventory/managing-modifier-groups-modifiers.md
+    - title: importing-inventory
+      link: docs/2-BUILD WITH REST API/working-with-inventory/importing-inventory.md
+    - title: managing-item-availability
+      link: docs/2-BUILD WITH REST API/working-with-inventory/managing-item-availability.md
+    - title: managing-items-item-groups
+      link: docs/2-BUILD WITH REST API/working-with-inventory/managing-items-item-groups.md
+    - title: managing-tags
+      link: docs/2-BUILD WITH REST API/working-with-inventory/managing-tags.md
+    - title: working-with-transaction-data-rest
+      link: docs/2-BUILD WITH REST API/working-with-transaction-data-rest.md
+    - title: make-a-rest-api-call
+      link: docs/2-BUILD WITH REST API/making-rest-api-calls/make-a-rest-api-call.md
+    - title: using-api-tokens
+      link: docs/2-BUILD WITH REST API/making-rest-api-calls/using-api-tokens.md
+    - title: merchant-id-and-api-token-for-development
+      link: docs/2-BUILD WITH REST API/making-rest-api-calls/merchant-id-and-api-token-for-development.md
+    - title: developer-pay-api
+      link: docs/2-BUILD WITH REST API/deprecated-apis/developer-pay-api.md
+    - title: 404-not-found
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors/404-not-found.md
+    - title: 429-too-many-requests
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors/429-too-many-requests.md
+    - title: 500-internal-server-error
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors/500-internal-server-error.md
+    - title: 400-bad-request
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors/400-bad-request.md
+    - title: 401-unauthorized
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors/401-unauthorized.md
+    - title: working-with-inventory
+      link: docs/2-BUILD WITH REST API/working-with-inventory.md
+    - title: webhooks
+      link: docs/2-BUILD WITH REST API/webhooks.md
+    - title: customers-api-eu-permissions
+      link: docs/2-BUILD WITH REST API/customers-api-eu-permissions.md
+    - title: working-with-orders
+      link: docs/2-BUILD WITH REST API/working-with-orders.md
+    - title: clover-rest-api-index
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index.md
+    - title: oauth-flows-in-clover
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover.md
+    - title: msc-web-apps
+      link: docs/2-BUILD WITH REST API/msc-web-apps.md
+    - title: applying-filters
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/applying-filters.md
+    - title: using-filters-to-retrieve-multiple-results-from-an-endpoint
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/using-filters-to-retrieve-multiple-results-from-an-endpoint.md
+    - title: convert-timestamps-to-unix-time
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/convert-timestamps-to-unix-time.md
+    - title: sorting-collections
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/sorting-collections.md
+    - title: paginating-elements
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/paginating-elements.md
+    - title: expanding-fields
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/expanding-fields.md
+    - title: api-usage-rate-limits
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/api-usage-rate-limits.md
+    - title: displaying-null-fields
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/displaying-null-fields.md
+    - title: using-object-associations
+      link: docs/2-BUILD WITH REST API/clover-rest-api-index/using-object-associations.md
+    - title: ds-6274-use-clover-rest-api
+      link: docs/2-BUILD WITH REST API/ds-6274-use-clover-rest-api.md
+    - title: using-oauth-20
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/using-oauth-20.md
+    - title: using-cors
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/using-cors.md
+    - title: use-oauth
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth.md
+    - title: merchant-interaction
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/merchant-interaction.md
+    - title: merchant-dashboard-left-navigation-oauth-flow
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/merchant-dashboard-left-navigation-oauth-flow.md
+    - title: high-trust-app-auth-flow
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/high-trust-app-auth-flow.md
+    - title: oauth-intro
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/oauth-intro.md
+    - title: refresh-access-tokens
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/refresh-access-tokens.md
+    - title: legacy-token-migration-flow
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/legacy-token-migration-flow.md
+    - title: oauth-flow-for-low-trust-apps-pkce
+      link: docs/2-BUILD WITH REST API/oauth-flows-in-clover/use-oauth/oauth-flow-for-low-trust-apps-pkce.md
+    - title: clover-development-basics-web-app
+      link: docs/2-BUILD WITH REST API/clover-development-basics-web-app.md
+    - title: making-rest-api-calls
+      link: docs/2-BUILD WITH REST API/making-rest-api-calls.md
+    - title: troubleshooting-api-errors
+      link: docs/2-BUILD WITH REST API/troubleshooting-api-errors.md
+    - title: exporting-merchant-data
+      link: docs/2-BUILD WITH REST API/exporting-merchant-data.md
+    - title: funding
+      link: docs/2-BUILD WITH REST API/funding.md
+    - title: creating-custom-orders
+      link: docs/2-BUILD WITH REST API/working-with-orders/creating-custom-orders.md
+    - title: printing-orders-rest-api
+      link: docs/2-BUILD WITH REST API/working-with-orders/printing-orders-rest-api.md
+    - title: calculating-order-totals
+      link: docs/2-BUILD WITH REST API/working-with-orders/calculating-order-totals.md
+    - title: create-custom-orders-copy
+      link: docs/2-BUILD WITH REST API/working-with-orders/create-custom-orders-copy.md
+    - title: tax-reports-examples
+      link: docs/2-BUILD WITH REST API/working-with-orders/tax-reports-examples.md
+    - title: manage-orders-data-copy
+      link: docs/2-BUILD WITH REST API/manage-orders-data-copy.md
+    - title: deprecated-apis
+      link: docs/2-BUILD WITH REST API/deprecated-apis.md
+    - title: datefunded
+      link: docs/2-BUILD WITH REST API/funding/datefunded.md
+    - title: card-type
+      link: docs/2-BUILD WITH REST API/funding/card-type.md
+    - title: funding-api-description
+      link: docs/2-BUILD WITH REST API/funding/funding-api-description.md
+    - title: funding-examples
+      link: docs/2-BUILD WITH REST API/funding/funding-examples.md
+- sections:
+  - title: 3-BUILD WITH ECOMMERCE API
+    sections:
+    - title: migrating-from-developer-pay-to-ecommerce
+      link: docs/3-BUILD WITH ECOMMERCE API/migrating-from-developer-pay-to-ecommerce.md
+    - title: recurring-payments-and-subscriptions-apis
+      link: docs/3-BUILD WITH ECOMMERCE API/recurring-payments-and-subscriptions-apis.md
+    - title: accepting-checks-by-telephone
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck/accepting-checks-by-telephone.md
+    - title: internet-check-acceptance
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck/internet-check-acceptance.md
+    - title: sales-decline-disclosure-templates
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck/sales-decline-disclosure-templates.md
+    - title: state-abbreviation-for-telecheck
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck/state-abbreviation-for-telecheck.md
+    - title: create-an-ach-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck/create-an-ach-token.md
+    - title: ds-6929-use-the-clover-ecommerce-gift-card-api
+      link: docs/3-BUILD WITH ECOMMERCE API/ds-6929-use-the-clover-ecommerce-gift-card-api.md
+    - title: testing-ecommerce-payment-flows-us-and-canada
+      link: docs/3-BUILD WITH ECOMMERCE API/testing-ecommerce-payment-flows-us-and-canada.md
+    - title: units-of-measurement-codes
+      link: docs/3-BUILD WITH ECOMMERCE API/l3-l2-support/units-of-measurement-codes.md
+    - title: accepting-purchase-cards
+      link: docs/3-BUILD WITH ECOMMERCE API/l3-l2-support/accepting-purchase-cards.md
+    - title: understanding-level-3-data
+      link: docs/3-BUILD WITH ECOMMERCE API/l3-l2-support/understanding-level-3-data.md
+    - title: understanding-level-2-data
+      link: docs/3-BUILD WITH ECOMMERCE API/l3-l2-support/understanding-level-2-data.md
+    - title: 3ds-for-clover-merchants-overview
+      link: docs/3-BUILD WITH ECOMMERCE API/3ds-for-clover-merchants-overview.md
+    - title: ecommerce-integration-types
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-integration-types.md
+    - title: l3-l2-support
+      link: docs/3-BUILD WITH ECOMMERCE API/l3-l2-support.md
+    - title: ecommerce-error-codes
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-error-codes.md
+    - title: ecommerce-api-tutorials
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials.md
+    - title: hosted-checkout-api
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api.md
+    - title: protect-ecommerce-merchants-from-card-testing-fraud
+      link: docs/3-BUILD WITH ECOMMERCE API/protect-ecommerce-merchants-from-card-testing-fraud.md
+    - title: enable-3ds-on-the-merchant-dashboard
+      link: docs/3-BUILD WITH ECOMMERCE API/3ds-for-clover-merchants-overview/enable-3ds-on-the-merchant-dashboard.md
+    - title: 3ds-secure-configure-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/3ds-for-clover-merchants-overview/3ds-secure-configure-sdk.md
+    - title: test-3ds-integration-in-sandbox
+      link: docs/3-BUILD WITH ECOMMERCE API/3ds-for-clover-merchants-overview/test-3ds-integration-in-sandbox.md
+    - title: add-3-d-secure-authentication-to-create-a-charge
+      link: docs/3-BUILD WITH ECOMMERCE API/3ds-for-clover-merchants-overview/add-3-d-secure-authentication-to-create-a-charge.md
+    - title: ecommerce-permission-sets
+      link: docs/3-BUILD WITH ECOMMERCE API/clover-development-basics-ecommerce/ecommerce-permission-sets.md
+    - title: ecommerce-data-model
+      link: docs/3-BUILD WITH ECOMMERCE API/clover-development-basics-ecommerce/ecommerce-data-model.md
+    - title: ecommerce-app-permissions
+      link: docs/3-BUILD WITH ECOMMERCE API/clover-development-basics-ecommerce/ecommerce-app-permissions.md
+    - title: ecommerce-api-error-codes-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-error-codes-copy.md
+    - title: use-the-gift-card-api-copy-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ds-6929-use-the-clover-ecommerce-gift-card-api/use-the-gift-card-api-copy-copy.md
+    - title: use-the-gift-card-api-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ds-6929-use-the-clover-ecommerce-gift-card-api/use-the-gift-card-api-copy.md
+    - title: activate-a-gift-card-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ds-6929-use-the-clover-ecommerce-gift-card-api/activate-a-gift-card-copy.md
+    - title: ds-6326-create-a-gift-card-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ds-6929-use-the-clover-ecommerce-gift-card-api/ds-6326-create-a-gift-card-token.md
+    - title: ecommerce-api-payments-flow
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-payments-flow.md
+    - title: ach-telecheck
+      link: docs/3-BUILD WITH ECOMMERCE API/ach-telecheck.md
+    - title: ecommerce-tokenization
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization.md
+    - title: clover-development-basics-ecommerce
+      link: docs/3-BUILD WITH ECOMMERCE API/clover-development-basics-ecommerce.md
+    - title: working-with-recurring-payments-and-subscriptions
+      link: docs/3-BUILD WITH ECOMMERCE API/recurring-payments-and-subscriptions-apis/working-with-recurring-payments-and-subscriptions.md
+    - title: recurring-apis-subscriptions
+      link: docs/3-BUILD WITH ECOMMERCE API/recurring-payments-and-subscriptions-apis/recurring-apis-subscriptions.md
+    - title: ecomm-software-development-kits
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits.md
+    - title: ecommerce-generate-an-oauth-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-generate-an-oauth-token.md
+    - title: get-charges
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/get-a-charge-tutorial/get-charges.md
+    - title: get-a-charge
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/get-a-charge-tutorial/get-a-charge.md
+    - title: create-a-gift-card-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/create-a-gift-card-token.md
+    - title: ecommerce-saving-card
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ecommerce-saving-card.md
+    - title: create-a-charge-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/create-a-charge-copy.md
+    - title: gift-card-api
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/gift-card-api.md
+    - title: ds-2993-saving-a-card-for-future-transactions
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ds-2993-saving-a-card-for-future-transactions.md
+    - title: ecommerce-generating-a-card-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ecommerce-generating-a-card-token.md
+    - title: use-3ds
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/use-3ds.md
+    - title: create-a-charge
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/create-a-charge.md
+    - title: capture-charge-for-split-shipment
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/capture-charge-for-split-shipment.md
+    - title: setting-soft-descriptors
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/setting-soft-descriptors.md
+    - title: ecommerce-paginating-requests
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ecommerce-paginating-requests.md
+    - title: create-pre-authorization
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/create-pre-authorization.md
+    - title: update-a-customer
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/update-a-customer.md
+    - title: ecommerce-accepting-payments
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ecommerce-accepting-payments.md
+    - title: capture-a-charge-tutorial
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/capture-a-charge-tutorial.md
+    - title: confirming-customer-information-with-ecommerce-fraud-tools
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/confirming-customer-information-with-ecommerce-fraud-tools.md
+    - title: get-a-charge-tutorial
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/get-a-charge-tutorial.md
+    - title: ecommerce-refunding-payments
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/ecommerce-refunding-payments.md
+    - title: revoke-a-card
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-api-tutorials/revoke-a-card.md
+    - title: python-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/python-sdk.md
+    - title: refunding-charges-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/refunding-charges-sdk.md
+    - title: working-with-customers-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/working-with-customers-sdk.md
+    - title: node-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/node-sdk.md
+    - title: creating-and-paying-for-orders-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/creating-and-paying-for-orders-sdk.md
+    - title: making-charges-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/making-charges-sdk.md
+    - title: setting-up-the-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/setting-up-the-sdk.md
+    - title: ruby-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/ruby-sdk.md
+    - title: java-sdk
+      link: docs/3-BUILD WITH ECOMMERCE API/ecomm-software-development-kits/java-sdk.md
+    - title: create-a-card-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization/create-a-card-token.md
+    - title: use-transarmor-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization/use-transarmor-token.md
+    - title: ta-token-pilot-create-a-transarmor-token
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization/ta-token-pilot-create-a-transarmor-token.md
+    - title: use-transarmor-tokens-with-ecommerce-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization/use-transarmor-tokens-with-ecommerce-copy.md
+    - title: ta-pilot-use-existing-transarmor-tokens
+      link: docs/3-BUILD WITH ECOMMERCE API/ecommerce-tokenization/ta-pilot-use-existing-transarmor-tokens.md
+    - title: customizing-iframe-elements-with-css
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/clover-iframe-integrations/customizing-iframe-elements-with-css.md
+    - title: clover-iframe-features-copy
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/clover-iframe-integrations/clover-iframe-features-copy.md
+    - title: clover-iframe-features
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/clover-iframe-integrations/clover-iframe-features.md
+    - title: using-the-clover-hosted-iframe
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/clover-iframe-integrations/using-the-clover-hosted-iframe.md
+    - title: ecomm-hosted-checkout-webhook
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/ecomm-hosted-checkout-webhook.md
+    - title: clover-iframe-integrations
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/clover-iframe-integrations.md
+    - title: testing-your-hosted-checkout-integration-macoslinux
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/testing-your-hosted-checkout-integration-macoslinux.md
+    - title: creating-a-hosted-checkout-session
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/creating-a-hosted-checkout-session.md
+    - title: making-a-checkout-request
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/making-a-checkout-request.md
+    - title: redirecting-customers
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/redirecting-customers.md
+    - title: testing-your-hosted-checkout-integration-windows
+      link: docs/3-BUILD WITH ECOMMERCE API/hosted-checkout-api/testing-your-hosted-checkout-integration-windows.md
+    - title: error-codes-internal
+      link: docs/3-BUILD WITH ECOMMERCE API/error-codes-internal.md
+
