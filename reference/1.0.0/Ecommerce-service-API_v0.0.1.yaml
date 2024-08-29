@@ -120,7 +120,7 @@ components:
             - amount
             - currency
             - source
-schemas:
+  schemas:
     tender:
       description: 'Custom tender to charge or pay for the order, for example: cash
         or check.'
@@ -1944,7 +1944,8 @@ paths:
       tags:
       - CHARGES
       operationId: CreateCharge
-      x-proxy-name: createcharge
+      x-child-product-name: Charges
+      x-proxy-name: Create Charge
       summary: Create a charge
       x-clover-handler: com.clover.scl.handlers.charges.CreateChargeHandler
       x-clover-is-public: true
